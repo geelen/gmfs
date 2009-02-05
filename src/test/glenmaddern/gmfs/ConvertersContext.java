@@ -15,4 +15,11 @@ public final class ConvertersContext {
             expect.that(Converters.STRING_TO_INT.f(s)).isEqualTo(Integer.parseInt(s));
         }
     }
+
+    @Specification
+    public void shouldHaveAStringToDouble() {
+        for (final String s : Arrays.asList("1", "2.0", "10.65095")) {
+            expect.that(Converters.STRING_TO_DOUBLE.f(s)).isEqualTo(Double.parseDouble(s));
+        }
+    }
 }

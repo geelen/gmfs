@@ -6,4 +6,9 @@ public final class Converters {
             return Integer.valueOf(string);
         }
     };
+    public static final F<String, Double> STRING_TO_DOUBLE = new F<String, Double>() {
+        public Double f(final String string) {
+            return Double.valueOf(string);
+        }
+    };
 }
