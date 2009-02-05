@@ -1,0 +1,198 @@
+* Instinct Release 0.2.0 *
+
+o Core features
+  o Specification groups.
+o Reductio Integration
+  o Integrated Reductio, a tool for automated specification testing. See
+    http://reductiotest.org/ for more information.
+o Infrastructure
+   o Parse lifecycle in builder, attach to specification method.
+
+
+* Instinct Release 0.1.9 *
+
+Maintenance release; Multiple specification failures reported, specification lifecycle
+can now be customised, Scala examples, additional Functional Java matchers (List, Either,
+Option), Maven bundle, seperate source JAR.
+
+o Core Features
+  o Custom specification lifecycles can now be plugged in using the @Context annotation.
+    This would allow for example, a Spring application context to be initialised and wired
+    into each specification method allowing integration-style specifications using a Spring
+    beans.
+  o Multiple errors are now displayed when a specification fails with more than one exception.
+o Expectation API
+  o Added fj.data.List matchers:
+    expect.that(List.nil().cons(1)).isEqualTo(List.nil().cons(1))
+  o Added fj.data.Option matchers:
+    expect.that(Some(1)).isSome(1), expect.that(foo.bar()).isNone().
+  o Added fj.data.Either matchers:
+    expect.that(error()).isLeft(runtimeException), expect.that(foo.bar()).isRight(42).
+o Scala integration
+  o Added Scala stack example, showing the use of Instinct under Scala to spec out Scala
+    code.
+o Maven integration
+  o Added Maven bundle to allow uploading to central Maven repository.
+o Packaging
+  o Moved source code out of main jar into instinct-<version>-sources.jar (for Maven).
+  o Moved javadoc into jar instead of zip instinct-<version>-javadoc.jar (for Maven).
+o Infrastructure
+  o Upgraded to Functional Java 2.10.
+  o Downgraded (again) to CGLib 2.1.3 (for Maven integration).
+o Bugs
+  o (Issue 21) Expected exception try-catch should only wrap specs, not before and after.
+  o (Issue 19) Throwing exception out of mocked code confused expected exception handling.
+  o (Issue 40) Formatting of multiple exception report could be nicer.
+
+
+* Instinct Release 0.1.8 *
+
+Maintenance release; Added the ability to customise the way specifications and other lifecycle
+methods are found.
+
+o Core Features
+  o Custom specification, before specification and after specification annotations and
+    naming conventions can be provided via the Context annotation. This can also be used
+    to turn off naming convention-based detection (using NoNamingConvention).
+o Infrastructure
+  o Upgraded to: Functional Java 2.8.
+o Bugs
+  o (Issue 36) Abstract classes are being run as a result of specification runner refactoring.
+  o (Issue 37) Expected exceptions are being printed to console in Ant runner even though spec passes.
+  o (Issue 38) Functional java jar is not included in release zip.
+
+
+* Instinct Release 0.1.7 *
+
+Maintenance release; specification double naming conventions, removed in progress
+specification state, runners emit pending reason, added Functional Java based matchers,
+upgraded to Ant 1.7.1, CGLib 2.2, jMock 2.5.0 and Objenesis 1.1, internal re-write of
+specification runners.
+
+o Core Features
+  o Automatic creation of specification doubles (mocks, stubs and dummies) based on naming
+    convention (in addition to annotations).
+  o Removed in progress specification state, use pending instead.
+  o All runners now emit pending specification reason.
+o Expectation API
+  o Added function matcher, e.g. expect.that(list).doesNotContain({int i => i > 3} (based
+    on Functional Java's fj.F).
+  o Added fj.data.List matcher.
+o Infrastructure
+  o Added dependency on Functional Java, used both internally and for use in expectation
+    API.
+  o Continued clean up of specification running code.
+  o Upgraded to: Ant 1.7.1, CGLib 2.2, jMock 2.5.0 and Objenesis 1.1.
+o Bugs
+  o (Issue 11) It would be nice not to have to depend on jmock when writing a BDD-style
+    test involving no mocks.
+
+
+* Instinct Release 0.1.6 *
+
+o Core Features
+  o Remove the need for @Context annotation.
+  o Automatic creation of specification doubles: mocks, stubs and dummies.
+  o Automatic reset and verification of mocks.
+  o @BeforeSpecification, @AfterSpecification and @Specification (and naming convention
+    equivalents) can be used across base and subclasses.
+  o Better error messages for hasBeanProperty and hasBeanPropertyWithValue.
+o Expectation API
+  o Make expectations more like natural language. eg. isEqualTo(), doesNotEqual(), etc.
+    Existing code using equalTo(), etc. will need to be updated.
+  o Collection checkers: hasTheSameContentAs(Collection<E>) and hasTheSameContentAs(E...).
+    These only check content and not the order of elements.
+  o Ensure all "collection" classes (Array, Map, Set, List, String, SharSequence) have
+    similar size checkers available.
+  o Added file checker,
+o JUnit integration
+  o Fix Eclipse unrooted context.
+o Ant integration
+  o Support for custom classpath.
+  o Quiet specification result formatting (only shows errors and pending specs).
+  o Use correct project logging level for errors, etc.
+o jMock integration
+  o Support states: Mockery.states(String).
+o Infrastructure
+  o Removed reliance on Boost, transferred all relevant Boost classes locally.
+  o jMock 2.4.
+  o Downgraded to CGLib 2.1.3 (for Maven integration).
+o Bugs
+  o Miscellaneous NullPointerExceptions and null related problems in state expectation API.
+  o (defect-3) IterableChecker should have a containsOnly method or something.
+  o (defect-8) @BeforeSpecification does not run if implemented in an abstract base class.
+  o (defect-20) Eclipse Junit4 InstinctRunner shows tests under the "Unrooted Tests" node.
+  o (defect-22) Context treeview shows baseclass and subclass when only subclass is run.
+  o (defect-23) Overridden specifications run twice.
+
+
+* Instinct Release 0.1.5 *
+
+o Features
+  o Core
+    o Initial cut of pending specifications (doesn't report correctly in JUnit).
+    o Added marking of specifications with naming conventions.
+  o Expectation API
+    o Behavioural expectation API (i.e. mocking) - com.googlecode.instinct.expect.Expect.
+    o Expected exception (simple version, encoded in specification annotation).
+    o Add regular expression checking to string checker.
+    o Add empty checks to array checker.
+  o Properties
+    o Prototype QuickCheck style properties API (like Popper/JUnit 4 Theories).
+  o Integration
+    o Added JUnit 4 runner, with @ContextClasses annotation.
+    o Moved old mocking code to jMock 2, removed jMock 1.2 dependency.
+o Bugs
+  o Fixed Issue 4 - Add newlines between context output in brief runner.
+  o Fixed concurrent modification issue with the JUnit runner.
+o Misc
+  o Upgraded to jMock 2.2.
+  o Upgraded to JUnit 4.4.
+
+
+* Instinct Release 0.1.4 *
+
+o Removed the need for specification methods to have a void return type (provides
+  cleaner Groovy integration).
+o Renamed BehaviourContext to just Context to bring into line with rest of code.
+o Added command line context runner.
+o Improved specification lifecycle listeners.
+o Added BooleanChecker for state-based testing of booleans.
+o Additional StringChecker expectations for length.
+o Removed EasyMock dependency, added Objenisis for mocking concrete classes.
+o Internal re-write to remove arrays and return typed Collections instead.
+o Added Clover code coverage.
+o Misc. features required for IntelliJ IDEA plugin.
+
+
+* Instinct Release 0.1.3 *
+
+o "Merged" state & bahavioural expectation API (both accessible from same class).
+  Behaviour API still under development.
+o Upgraded libraries to jMock 1.2.0, jMock 2.0.0 & JUnit 4.3.1.
+o Added external integration points for runners & reporting. Thanks to Paul King
+  for Groovy integration.
+
+
+* Instinct Release 0.1.2 *
+
+o State-based expectation API - com.googlecode.instinct.expect.Expect.
+o First cut of JUnit 3 integration.
+
+
+* Instinct Release 0.1.1 *
+
+There was no public 0.1.1 release.
+
+
+* Instinct Release 0.1.0 *
+
+Initial public release.
+o Support for running specifications (based on annotations), effectively
+  providing simple JUnit 3.8.x feature parity.
+o Core annotation support - BehaviourContext, Specification, BeforeSpecification,
+  AfterSpecification.
+o Ant task.
+o Specifications are located based on annotations.
+o Simplified mocking API, build on jMock 1.1.
+o Simple Verification class (will change in future releases).

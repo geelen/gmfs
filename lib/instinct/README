@@ -1,0 +1,142 @@
+                                  ************
+*********************************** Instinct ***********************************
+                                  ************
+
+                        <http://instinct.googlecode.com/>
+
+
+* What is Instinct? *
+
+Instinct is a Behaviour Driven Development (BDD) framework for Java. Inspired
+by RSpec, Instinct provides flexible annotation of contexts, specifications
+and actors; automatic creation of test doubles and test subjects; a state and
+behaviour expectation API; JUnit test runner integration; Ant support and an
+IntelliJ IDEA plugin.
+
+
+* Distribution Contents *
+
+The distribution contains the following contents:
+
+o README                            - This readme file.
+o LICENCE                           - Instinct licence file.
+o NOTICE                            - Licence notices for libraries used in Instinct.
+o RELEASE-NOTES                     - Release notes for this & previous releases.
+o instinct-<version>.jar            - Instinct Jar file.
+o instinct-<version>-sources.jar    - Instinct source code.
+o instinct-<version>-javadoc.jar    - Instinct API javadoc (does not include internal API).
+o lib/                              - Libraries required by Instinct at runtime (including
+                                      licences), see below for details.
+
+Instinct depends on the following libraries at runtime.
+
+o cglib-nodep-2.2.jar
+o hamcrest-all-1.1.jar
+o jmock-2.5.0.jar
+o jmock-legacy-2.5.0.jar
+o objenesis-1.1.jar
+o functionaljava-2.10.jar
+
+In addition, to use the Instinct Ant task, you'll need:
+
+o ant-1.7.1.jar
+
+In addition, to use the JUnit 3/4 runners, you'll need:
+
+o junit-dep-4.4.jar
+
+Note. As JUnit 4.4 bundles Hamcrest, you can choose to either take Hamcrest from JUnit
+or as a seperate Jar. If you choose to take the JUnit version you will need the full
+JUnit Jar 'junit-4.4.jar' instead of the no dependencies version listed here.
+
+In addition, if you want to use Instinct from Scala, you'll need:
+
+o scala-compiler-2.7.1.r15611-b20080728010100.jar
+o scala-library-2.7.1.r15611-b20080728010100.jar
+
+Note. The version of Scala required is newer than the latest released version (2.7.1).
+This is due to a known issue in the compiler that has been fixed in the trunk. The
+version in lib/scala and used in the example project will work, as will 2.7.2 when
+released.
+
+
+* Documentation *
+
+Documentation can be found at: http://instinct.googlecode.com/.
+
+
+* Package Structure *
+
+Instinct is organised into published APIs and internal packages. You should use
+the published API when using Instinct. However, you are welcome to use the
+internal classes, though relying on the internal APIs is not advised as they
+will change from release to release.
+
+
+Published packages
+
+com.googlecode.instinct.actor
+  Utilities for creating specification actors; dummies, stubs and mocks.
+
+com.googlecode.instinct.expect
+  Expectation API -Includes support for setting state & behaviour expectations.
+
+com.googlecode.instinct.integrate
+  Integration with other tools such as JUnit and Ant.
+
+com.googlecode.instinct.marker
+  Annotations and naming conventions for making code available to Instinct.
+
+
+Internal packages
+
+com.googlecode.instinct.internal
+  All classes in this package are internal Instinct APIs. Relying on them is not
+  recommended, they will change.
+
+com.googlecode.instinct.sandbox
+  New ideas, not ready for production usage. You are strongly advised not to
+  use this code.
+
+
+Plug-in Points
+
+com.googlecode.instinct.report
+  Context result reporting.
+
+com.googlecode.instinct.runner
+  Context runners for running Instinct contexts outside of the provided Ant,
+  JUnit or IDE runners. e.g. For integration with Spring integration tests.
+
+
+* Source *
+
+Source code is available within the distribution Jars. Complete source is
+available at: http://instinct.googlecode.com/
+
+Developer instructions can be found at:
+
+  http://code.google.com/p/instinct/wiki/DevelopmentReadme
+
+
+* Contributions *
+
+Current Developers
+o Tom Adams
+o Chris Myers
+o Nicholas Partridge
+
+Past Developers & Contributors
+o Ben Warren
+o Sanjiv Sahayam
+o Lyall Ward
+
+Thanks to the work done on RSpec, jMock, EasyMock, Boost & JRDF. These libraries
+inspired Instinct. Thanks also to the EasyDoc team, past & present, your work is
+inspirational.
+
+Some of the work in Instinct is inspired by the research of Tony Morris.
+
+Instinct development and research is supported by Workingmouse: http://workingmouse.com/.
+Code coverage provided by Atlassian Clover: http://www.atlassian.com/software/clover/.
+IntelliJ IDEA licences provided by JetBrains: http://www.jetbrains.com/.
