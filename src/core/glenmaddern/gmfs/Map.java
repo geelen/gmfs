@@ -21,4 +21,12 @@ public final class Map {
     public static <A,B> Iterator<B> mapIterator(final Iterator<A> iter, final F<A,B> fs) {
         return new MappingIterator<A,B>(iter, fs);
     }
+
+    public static <K,A,B> java.util.Map<K,B> mapValues(final java.util.Map<K,A> map, final F<A,B> f) {
+        final java.util.Map<K,B> result = Maps.newHashMap();
+        for (final java.util.Map.Entry<K, A> entry : map.entrySet()) {
+            result.put(entry.getKey(), f.f(entry.getValue()));
+        }
+        return result;
+    }
 }
