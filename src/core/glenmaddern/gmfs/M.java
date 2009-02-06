@@ -5,7 +5,7 @@ import glenmaddern.gmfs.concrete.MappingIterator;
 import java.util.List;
 import java.util.Iterator;
 
-public final class Map {
+public final class M {
     public static <A,B> List<B> mapList(final Iterable<A> as, final F<A,B> fs) {
         return Lists.newArrayList(mapIterable(as, fs));
     }

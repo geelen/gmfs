@@ -9,18 +9,18 @@ import java.util.List;
 import java.util.Arrays;
 
 @RunWith(InstinctRunner.class)
-public final class MapContext {
+public final class MContext {
     @Specification
     public void shouldMapLists() {
         final List<String> inputList = Arrays.asList("1", "2", "3", "4", "5");
         final List<Integer> expectedList = Arrays.asList(1, 2, 3, 4, 5);
-        expect.that(Map.mapList(inputList, Converters.STRING_TO_INT)).isEqualTo(expectedList);
+        expect.that(M.mapList(inputList, Converters.STRING_TO_INT)).isEqualTo(expectedList);
     }
 
     @Specification
     public void shouldMapIterables() {
         final List<String> inputList = Arrays.asList("1", "2", "3", "4", "5");
-        final Iterable<Double> mappedIterable = Map.mapIterable(inputList, Converters.STRING_TO_DOUBLE);
+        final Iterable<Double> mappedIterable = M.mapIterable(inputList, Converters.STRING_TO_DOUBLE);
         expect.that(Lists.newArrayList(mappedIterable)).isEqualTo(Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0));
     }
 }
