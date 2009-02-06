@@ -1,5 +1,7 @@
 package glenmaddern.gmfs;
 
+import static glenmaddern.gmfs.T.*;
+
 public final class Pair<A> {
     private final T2<A, A> t2;
 
@@ -16,11 +18,11 @@ public final class Pair<A> {
     }
 
     public <B> Pair<B> map(final F<A, B> f) {
-        return Pair.pair(f.f(t2._1()), f.f(t2._2()));
+        return pair(f.f(t2._1()), f.f(t2._2()));
     }
 
     public static <A> Pair<A> pair(final A a, final A b) {
-        return new Pair<A>(T.t(a, b));
+        return new Pair<A>(t(a, b));
     }
 
     public String toString() {

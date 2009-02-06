@@ -11,4 +11,17 @@ public final class Converters {
             return Double.valueOf(string);
         }
     };
+    public static final F<String, Boolean> STRING_TO_BOOL = new F<String, Boolean>() {
+        public Boolean f(String string) {
+            return Boolean.valueOf(string);
+        }
+    };
+
+    public static <A> F<A, A> identity() {
+        return new F<A, A>() {
+            public A f(A a) {
+                return a;
+            }
+        };
+    }
 }

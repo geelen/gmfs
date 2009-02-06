@@ -9,7 +9,7 @@ public final class T {
         return new T2<A, B>(a, b);
     }
 
-    public static <A,B,C> P3<A,B,C> t(final A a, final B b, final C c) {
+    public static <A,B,C> T3<A,B,C> t(final A a, final B b, final C c) {
         return new T3<A, B, C>(a, b, c);
     }
 }
